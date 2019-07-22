@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="myApp">
+        <p>{{message}}</p>
+        <p>{{message|toupper}}</p>
+        <hr>
+        <p>现在的vue.js的学习进度是{{num}}({{num|toppercentage}})。</p>
+    </div>
+    <script>
+        var myApp = new Vue({
+            el: '#myApp',
+            data: {
+                message: 'hello vue.js world',
+                num: 0.3
+            },
+            filters: {
+                toupper: function(value) {
+                    return value.toUpperCase();
+                },
+                toppercentage: function(value) {
+                    return value * 100 + '%';
+                },
+            },
+        })
+    </script>
+</body>
+
+</html>
