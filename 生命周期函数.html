@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="myApp">
+        <p id="h3">{{msg}}</p>
+        <input type="button" value="改变msg的值" @click="msg='no'"> </div>
+    <script>
+        var vm = new Vue({
+            el: '#myApp',
+            data: {
+                msg: '可还行？'
+            },
+            beforeUpdate() {
+                console.log('界面上的元素的内容：' + document.getElementById('h3').innerText);
+                console.log('data中的msg数据是：' + this.msg)
+            },
+        })
+    </script>
+</body>
+
+</html>

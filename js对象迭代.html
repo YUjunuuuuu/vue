@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="myApp">
+        <h1>js对象的迭代</h1>
+        <div v-for="(value,key) in mygames">{{key}}:{{value}}</div>
+    </div>
+    <script>
+        var myApp = new Vue({
+            el: "#myApp",
+            data: {
+                mygames: {
+                    title: "鬼泣",
+                    price: 390,
+                    pubdate: "2017年夏季",
+                    category: "格斗/冒险",
+                    agerange: "全年龄",
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+</head>
+
+<body>
+    <div id="myApp">
+        <h1>表单控件绑定</h1>
+        <input type="text" v-model="message" placeholder="来啊，编辑我啊">
+        <p>Message is {{message}}</p>
+    </div>
+    <script>
+        var myApp = new Vue({
+            el: "#myApp",
+            data: {
+                message: "我爱马里奥",
+            }
+        })
+    </script>
+</body>
+
+</html>

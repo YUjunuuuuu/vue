@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link href="bootstrap.min.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="myApp">
+        <div class="panel panel-primary">
+            <div class="panel-heading">喜爱的汽车网站</div>
+            <div class="panel-body form-inline">
+                <label>
+                    ID:<input type="text" class="form-control" v-model="id">
+                </label>
+                <label>
+                        Name:<input type="text" class="form-control" v-model="name">
+                    </label>
+                <button type="button" class="btn btn-primary" @click="add">添加</button>
+                <label>搜索🔍
+                    <input type="text" v-model="text" class="form-control" v-focus v-color>
+                </label>
+
+
+            </div>
+        </div>
+
+        <table class="table">
+            <transition-group>
+
+
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>添加时间</th>
+                    <th>操作</th>
+                </tr>
+
+                <tr v-for="items in search(text)" :key="items.id">
+                    <td>{{items.id}}</td>
+                    <td>{{items.name}}</td>
+                    <td>{{items.ctime|qd}}</td>
+                    <td><a href="#" @click="mc(items.id)">删除</a></td>
+
+                </tr>
+            </transition-group>
+
+        </table>
+
+
+    </div>
+    <script>
+        // Vue.directive('focus', {
+        //     inserted: function(el) {
+        //         el.onfocus = function() {
+        //             alert("haha");
+        //         }
+        //     }
+        // })
+        Vue.directive('color', {
+            bind: function(el) {
+                el.style.color = "red";
+            }
+        })
+        var vm = new Vue({
+            el: '#myApp',
+            data: {
+                id: '',
+                name: '',
+                text: '',
+                sj: [{
+                    id: 1,
+                    name: '奔驰',
+                    ctime: new Date()
+                }, {
+                    id: 2,
+                    name: '奥迪',
+                    ctime: new Date()
+                }]
+            },
+            methods: {
+                add() {
+                    this.sj.push({
+                        id: this.id,
+                        name: this.name,
+                        ctime: new Date()
+                    })
+                    this.id = this.name = "";
+                },
+                mc(t) {
+
+                    function cz(h) {
+                        if (h.id == t) {
+                            return h.id;
+                        }
+                    }
+                    this.sj.splice(this.sj.findIndex(cz), 1);
+
+                },
+                search(text) {
+                    if (text != "") {
+                        function cz1(h) {
+                            if (h.name.indexOf(text) >= 0) {
+
+                                return h.name;
+                            }
+                        }
+                        var sj1 = new Array();
+
+                        sj1.push(this.sj[this.sj.findIndex(cz1)]);
+                        return sj1;
+
+                    } else
+                        return this.sj;
+
+
+                }
+            },
+            filters: {
+                qd: function(value) {
+                    var ba = new Date(value);
+                    var y = ba.getFullYear();
+                    var m = ba.getMonth() + 1;
+                    var d = ba.getDate();
+                    var o = ba.getHours();
+                    var M = ba.getMinutes();
+                    var h = y + '-' + m + '-' + d + '-' + o + '-' + M;
+                    return h;
+                }
+            },
+
+        })
+    </script>
+</body>
+
+</html>

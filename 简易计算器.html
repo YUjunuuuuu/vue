@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="myApp">
+        <input type="text" v-model="c1">
+        <select v-model="c2">
+        <option>+</option>
+        <option>-</option>
+        <option>*</option>
+        <option>/</option>
+    </select>
+        <input type="text" v-model="c3">
+        <input type="button" value="=" @click="calculate">
+        <input type="text" v-model="result">
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#myApp',
+            data: {
+                c1: '0',
+                c2: '+',
+                c3: '0',
+                result: '0'
+            },
+            methods: {
+                calculate() {
+                    var codestr = 'parseInt(this.c1)' + this.c2 + 'parseInt(this.c3)';
+                    this.result = eval(codestr)
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>

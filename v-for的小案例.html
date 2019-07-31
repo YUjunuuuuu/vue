@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="myApp">
+        <label>
+        姓名：
+        <input type="text" v-model="name">
+    </label>
+        <label>
+        性别：
+        <input type="text" v-model="sex">
+    </label>
+        <input type="button" value="增加" @click="add">
+        <ul>
+            <!--注意：v-for循环的时候，key属性只能用number获取string-->
+            <!--注意：key在使用的时候，必须使用v-bind属性绑定-->
+            <li v-for="user in ss"><input type="checkbox">{{user.name}}--{{user.sex}}</li>
+        </ul>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#myApp',
+            data: {
+                name: '',
+                sex: '',
+                ss: [{
+                    name: '俞军',
+                    sex: '男'
+                }, {
+                    name: '李元东',
+                    sex: '男'
+                }, {
+                    name: '罗英健',
+                    sex: '女'
+                }, {
+                    name: '赵子豪',
+                    sex: '男'
+                }, {
+                    name: '谷轶铭',
+                    sex: '男'
+                }]
+            },
+            methods: {
+                add() {
+                    this.ss.unshift({
+                        name: this.name,
+                        sex: this.sex
+                    })
+                    this.name = this.sex = ''
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>

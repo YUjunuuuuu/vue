@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style type="text/css">
+        .v-enter,
+        .v-leave-to {
+            opacity: 0;
+            transform: translateX(150px);
+        }
+        
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 0.8s ease;
+        }
+        
+        .two-enter,
+        .two-leave-to {
+            opacity: 0;
+            transform: translateY(150px);
+        }
+        
+        .two-enter-active,
+        .two-leave-active {
+            transition: all 0.8s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="myApp">
+        <transition>
+            <p v-if="flag">哈哈，出现了</p>
+        </transition>
+
+        <input type="button" value="toggle" @click="flag=!flag">
+        <hr>
+        <transition name="two">
+            <p v-if="flag2">哈哈,咱们出现的方式不一样</p>
+        </transition>
+
+        <input type="button" value="toggle" @click="flag2=!flag2">
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#myApp',
+            data: {
+                flag: false,
+                flag2: false
+            }
+        })
+    </script>
+</body>
+
+</html>

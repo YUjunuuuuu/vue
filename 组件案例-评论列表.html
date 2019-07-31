@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="bootstrap.min.css" type="text/css" rel=stylesheet>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="myApp">
+
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">评论列表</div>
+            <com1 @func12="loadComments"></com1>
+            <ul class="list-group">
+                <li class="list-group-item" v-for="items in list" :key="items.id">
+                    <span class="badge">评论人：{{items.user}}</span> {{items.content}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <template id="one">
+                <div class="panel-body form-inline">
+                        <label>
+                                    评论人<input type="text" class="form-control" v-model="first">
+                                </label>
+                        <label>
+                                        评论内容<input type="text" class="form-control" v-model="second" >
+                                    </label>
+                        <button type="button" class="btn btn-primary" @click="postpl">添加</button>
+        
+        
+        
+                    </div>
+        </template>
+    <script>
+        var commentBox = {
+            template: '#one',
+            data() {
+                return {
+                    first: '',
+                    second: ''
+                }
+            },
+            methods: {
+                postpl() {
+                    var comments = {
+                        id: Date.now(),
+                        user: this.first,
+                        content: this.second
+                    }
+                    var list = JSON.parse(localStorage.getItem('cmts') || '[]')
+                    list.push(comments)
+                    localStorage.setItem('cmts', JSON.stringify(list))
+                    this.first = this.content = ''
+                    this.$emit('func12')
+
+
+
+
+
+                }
+            }
+        }
+        var vm = new Vue({
+            el: '#myApp',
+            data: {
+                list: [{
+                    id: 1,
+                    user: '李白',
+                    content: '天生我材必有用'
+                }, {
+                    id: 2,
+                    user: '安琪拉',
+                    content: '火焰是我最喜欢的玩具'
+                }, {
+                    id: 3,
+                    user: '嬴政',
+                    content: '一到深夜，整个人就变得酸不拉唧的'
+                }]
+            },
+            created() {
+                this.loadComments();
+            },
+            methods: {
+                loadComments() {
+                    var list = JSON.parse(localStorage.getItem('cmts') || '[]');
+                    this.list = list;
+                }
+            },
+            components: {
+                'com1': commentBox
+            }
+        })
+    </script>
+</body>
+
+</html>

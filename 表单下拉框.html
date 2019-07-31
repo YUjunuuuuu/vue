@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="myApp">
+        <h3>你最喜欢的NBA球星是</h3>
+        <select v-model="likedNBAstar" style="width:210px；">
+        <option>科比</option>
+        <option>乔丹</option>
+        <option>库里</option>
+        <option>汤普森</option>
+        <option>林书豪</option>
+</select>
+        <h3>我的全明星阵容</h3>
+        <select v-model="likedNBAstars" multiple style="width:210px;height:210px">
+        <option>科比</option>
+        <option>乔丹</option>
+        <option>库里</option>
+        <option>汤普森</option>
+        <option>林书豪</option>
+        <option>詹姆斯</option>
+        <option>哈登</option>
+        <option>麦迪</option>
+        <option>姚明</option>
+        <option>易建联</option>
+</select>
+        <h3>选择结果</h3>
+        <p>我喜欢的明星是：{{likedNBAstar}}</p>
+        <p>我的全明星阵容是：{{likedNBAstars}}</p>
+    </div>
+    <script>
+        var myApp = new Vue({
+            el: "#myApp",
+            data: {
+                likedNBAstar: "",
+                likedNBAstars: [],
+            }
+        })
+    </script>
+</body>
+
+</html>

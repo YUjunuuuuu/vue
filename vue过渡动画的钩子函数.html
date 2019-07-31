@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style type="text/css">
+        .circle {
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="myApp">
+        <transition appear @before-enter="one" @enter="two" @after-enter="three">
+            <div v-if="flag" class="circle"></div>
+        </transition>
+        <input type="button" value="加入购物车" @click="flag=!flag">
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#myApp',
+            data: {
+                flag: false
+            },
+            methods: {
+                one(el) {
+                    el.style.transform = "translate(0,0)"
+                },
+                two(el, done) {
+                    el.offsetWidth
+                    el.style.transform = "translate(150px,450px)"
+                    el.style.transition = 'all 0.2s ease'
+                    done()
+                },
+                three() {
+                    this.flag = false
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

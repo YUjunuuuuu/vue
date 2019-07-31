@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="myApp">
+        <h1>{{msg}}</h1>
+        <com1 :parentp="msg" @func="zz"></com1>
+    </div>
+    <template id="one">
+        <div>
+            <input type="button" value="为了测试方法能不能传过来" @click="mysj">
+        </div>
+    </template>
+    <script>
+        var vm = new Vue({
+            el: '#myApp',
+            data: {
+                msg: '这是父组件中的内容'
+            },
+            methods: {
+                zz() {
+                    console.log("hello 我是父组件里面的内容哦")
+                }
+            },
+            components: {
+                com1: {
+                    template: '#one',
+                    props: ['parentp'],
+                    methods: {
+                        mysj() {
+                            this.$emit('func')
+                        }
+                    }
+
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
